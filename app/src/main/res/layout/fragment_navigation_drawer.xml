@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="com.faqrulans.calcandfriend.NavigationDrawerFragment">
+
+
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Page 1"
+        android:textSize="30sp"
+        android:id="@+id/page1BT"
+        />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Page 2"
+        android:textSize="30sp"
+        android:id="@+id/page2BT"
+        android:layout_below="@id/page1BT"
+        />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Page 3"
+        android:textSize="30sp"
+        android:id="@+id/page3BT"
+        android:layout_below="@id/page2BT"
+        />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Page 4"
+        android:textSize="30sp"
+        android:id="@+id/page4BT"
+        android:layout_below="@id/page3BT"
+        />
+
+</RelativeLayout>
