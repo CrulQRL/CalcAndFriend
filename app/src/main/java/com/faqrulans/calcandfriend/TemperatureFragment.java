@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class TemperatureFragment extends Fragment {
     Spinner spinner2;
     EditText inputTempET;
     TextView resultTempTV;
+    Button convertBT;
     int selectedTemperature1;    //0 celcius, 1 farenheit, 2 kelvin
     int selectedTemperature2;    //0 celcius, 1 farenheit, 2 kelvin
 
@@ -46,6 +48,7 @@ public class TemperatureFragment extends Fragment {
         spinner2 = (Spinner) view.findViewById(R.id.spinner2);
         inputTempET = (EditText) view.findViewById(R.id.inputTempET);
         resultTempTV = (TextView) view.findViewById(R.id.resultTempTV);
+        convertBT = (Button) view.findViewById(R.id.convertBT);
         selectedTemperature1 = 0;
         selectedTemperature2 = 0;
 
@@ -66,6 +69,19 @@ public class TemperatureFragment extends Fragment {
                 selectedTemperature2 = position;
             }
         });
+    }
+
+    private void SetButtonConvertListener(){
+        convertBT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartConvert();
+            }
+        });
+    }
+
+    private void StartConvert(){
+
     }
 
     private void CelciusToFarenheit(){
