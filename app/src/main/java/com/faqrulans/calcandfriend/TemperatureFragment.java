@@ -7,13 +7,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class TemperatureFragment extends Fragment {
 
 
     //private OnFragmentInteractionListener mListener;
+
+    Spinner spinner1;
+    Spinner spinner2;
+    EditText inputTempET;
+    TextView resultTempTV;
+    int selectedTemperature1;    //0 celcius, 1 farenheit, 2 kelvin
+    int selectedTemperature2;    //0 celcius, 1 farenheit, 2 kelvin
+
+
 
     public TemperatureFragment() {
         // Required empty public constructor
@@ -23,9 +35,38 @@ public class TemperatureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_temperature, container, false);
+        View view = inflater.inflate(R.layout.fragment_temperature, container, false);
+        InitVar(view);
+        return view;
     }
 
+    private void InitVar(View view){
+
+        spinner1 = (Spinner) view.findViewById(R.id.spinner1);
+        spinner2 = (Spinner) view.findViewById(R.id.spinner2);
+        inputTempET = (EditText) view.findViewById(R.id.inputTempET);
+        resultTempTV = (TextView) view.findViewById(R.id.resultTempTV);
+        selectedTemperature1 = 0;
+        selectedTemperature2 = 0;
+
+
+    }
+
+    private void setSpinnerListener(){
+        spinner1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedTemperature1 = position;
+            }
+        });
+
+        spinner1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedTemperature2 = position;
+            }
+        });
+    }
 
     private void CelciusToFarenheit(){
 

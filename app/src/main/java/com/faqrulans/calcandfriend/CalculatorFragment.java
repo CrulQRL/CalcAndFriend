@@ -3,6 +3,7 @@ package com.faqrulans.calcandfriend;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -72,7 +74,9 @@ public class CalculatorFragment extends Fragment {
         lastInputNumber = "";
         result = "";
         aritmaticTV = (TextView) view.findViewById(R.id.aritmaticTV);
+        aritmaticTV.setMovementMethod(new ScrollingMovementMethod());
         operationTV = (TextView) view.findViewById(R.id.operationTV);
+        operationTV.setMovementMethod(new ScrollingMovementMethod());
         button_dot = (Button) view.findViewById(R.id.button_dot);
         button_dot.setOnClickListener(ButtonClickListener());
         button_0 = (Button) view.findViewById(R.id.button_0);
@@ -127,15 +131,17 @@ public class CalculatorFragment extends Fragment {
     
     public void Count(View v) {
 
+
         String text = ((Button) v).getText().toString();
         int pressedButtonId = v.getId();
+
 
         if (pressedButtonId == button_0.getId()) {
             //aritmaticTV.append(text);
             //operationArs.add(text);
             lastInputNumber += "0";
             mathProcess += "0";
-            
+
         } else if (pressedButtonId == button_1.getId()) {
             //aritmaticTV.append(text);
             //operationArs.add(text);
@@ -280,6 +286,8 @@ public class CalculatorFragment extends Fragment {
 
         aritmaticTV.setText(mathProcess);
         lastButtonClicked = pressedButtonId;
+
+
     }
 
     public void RemoveAll(){
@@ -375,39 +383,54 @@ public class CalculatorFragment extends Fragment {
 
         }
 
-        return stack.pop();
+        String result = stack.pop();
+        if(result.length() > 12){
+           result = result.substring(0,12);
+        }
+        return result;
     }
 
     public String DoOperation(String op1, String op2, char operation){
 
 
-        //double operand1 = Double.parseDouble(op1);
-        //double operand2 = Double.parseDouble(op2);
-
+        double operand1 = Double.parseDouble(op1);
+        double operand2 = Double.parseDouble(op2);
         BigDecimal operand1BD = new BigDecimal(op1);
         BigDecimal operans2BD = new BigDecimal(op2);
-
+        String result = "";
         //Double result = new Double(0);
 
 
         if(operation == '+'){
             //result = operand1 + operand2;
             operand1BD = operand1BD.add(operans2BD);
+
         }else if(operation == '-'){
             //result = operand1 - operand2;
             operand1BD = operand1BD.subtract(operans2BD);
+
         }else if(operation == '*'){
             //result = operand1 * operand2;
             operand1BD = operand1BD.multiply(operans2BD);
+
         }else if(operation == '/'){
             //result = operand1 / operand2;
-            operand1BD = operand1BD.divide(operans2BD);
+
+            operand1 = operand1/operand2;
+            result += operand1;
+
+            if(result.length() > 12) {
+                operand1BD = operand1BD.divide(operans2BD, 12, RoundingMode.HALF_UP);
+            }else{
+                operand1BD = operand1BD.divide(operans2BD);
+            }
         }
 
         /**
         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
             return "" + result.intValue();
         }**/
+
 
         return "" + operand1BD;
 
@@ -488,6 +511,13 @@ public class CalculatorFragment extends Fragment {
         }
 
         return postfixBuffer;
+    }
+
+    public boolean TextViewIsFull(){
+        if(aritmaticTV.getText().toString().length() >= 12){
+            return true;
+        }
+        return false;
     }
 
 

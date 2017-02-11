@@ -1,13 +1,116 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:weightSum="7"
     tools:context="com.faqrulans.calcandfriend.TemperatureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Temperature Fragment" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        >
+       <EditText
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:inputType="number"
+           android:id="@+id/inputTempET"
+           android:textSize="25sp"
+           android:hint="type here"
+           android:text=""
+           android:background="@drawable/border_view"
+           android:gravity="center"
+           />
 
-</FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="From:"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="To:"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:entries="@array/temperature_arrays"
+            android:prompt="@string/temperature_prompt"
+            android:spinnerMode="dialog"
+            />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:entries="@array/temperature_arrays"
+            android:prompt="@string/temperature_prompt"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:spinnerMode="dialog"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/resultTempTV"
+            android:hint="result"
+            android:textSize="25sp"
+            android:background="@drawable/border_view"
+            android:gravity="center"
+
+            />
+
+
+
+        </LinearLayout>
+</LinearLayout>
