@@ -26,6 +26,32 @@ public class TemperatureFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_temperature, container, false);
     }
 
+
+    private void CelciusToFarenheit(){
+
+    }
+
+    private void FarenheitToCelcius(){
+
+    }
+
+    private void KelvinToCelcius(){
+
+    }
+
+    private void CelciusToKelvin(){
+
+
+    }
+
+    private void KelvinToFarenheit(){
+
+    }
+
+    private void FarenheitToKelvin(){
+
+
+    }
     /**
     @Override
     public void onCreate(Bundle savedInstanceState) {

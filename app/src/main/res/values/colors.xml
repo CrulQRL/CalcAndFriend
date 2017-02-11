@@ -6,7 +6,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlackLight">#1A1A1A</color>
-    <color name="colorBlackLight2">#333333</color>
+    <color name="colorBlackLight2">#4d4d4d</color>
     <color name="colorBlackLight3">#1a1a1a</color>
     <color name="colorBluePurple">#00004d</color>
 </resources>
