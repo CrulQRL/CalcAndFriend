@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -200,7 +201,7 @@ public class CalculatorFragment extends Fragment {
 
         } else if(pressedButtonId == button_dot.getId()){
 
-            if(mathProcess.length() > 0 || lastInputNumber.length() > 0) {
+            if(!lastInputNumber.contains(".") && (mathProcess.length() > 0 || lastInputNumber.length() > 0)) {
                 lastInputNumber += ".";
                 mathProcess += ".";
             }
@@ -379,26 +380,36 @@ public class CalculatorFragment extends Fragment {
 
     public String DoOperation(String op1, String op2, char operation){
 
-        double operand1 = Double.parseDouble(op1);
-        double operand2 = Double.parseDouble(op2);
-        Double result = new Double(0);
+
+        //double operand1 = Double.parseDouble(op1);
+        //double operand2 = Double.parseDouble(op2);
+
+        BigDecimal operand1BD = new BigDecimal(op1);
+        BigDecimal operans2BD = new BigDecimal(op2);
+
+        //Double result = new Double(0);
 
 
         if(operation == '+'){
-            result = operand1 + operand2;
+            //result = operand1 + operand2;
+            operand1BD = operand1BD.add(operans2BD);
         }else if(operation == '-'){
-            result = operand1 - operand2;
+            //result = operand1 - operand2;
+            operand1BD = operand1BD.subtract(operans2BD);
         }else if(operation == '*'){
-            result = operand1 * operand2;
+            //result = operand1 * operand2;
+            operand1BD = operand1BD.multiply(operans2BD);
         }else if(operation == '/'){
-            result = operand1 / operand2;
+            //result = operand1 / operand2;
+            operand1BD = operand1BD.divide(operans2BD);
         }
 
+        /**
         if ((result == Math.floor(result)) && !Double.isInfinite(result)) {
             return "" + result.intValue();
-        }
+        }**/
 
-        return "" + result;
+        return "" + operand1BD;
 
     }
 

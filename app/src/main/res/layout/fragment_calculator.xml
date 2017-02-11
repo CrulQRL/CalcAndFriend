@@ -108,7 +108,7 @@
                 android:id="@+id/button_div"
                 android:layout_marginLeft="@dimen/button_margin_side"
                 android:layout_marginRight="@dimen/button_margin_side"
-                android:background="@color/black"
+                android:background="@drawable/operator_button_effect"
                 android:textSize="30dp"
                 android:text="/"
                 android:textColor="@color/colorWhite" />
@@ -169,7 +169,7 @@
                 android:id="@+id/button_mul"
                 android:layout_marginLeft="@dimen/button_margin_side"
                 android:layout_marginRight="@dimen/button_margin_side"
-                android:background="@color/black"
+                android:background="@drawable/operator_button_effect"
                 android:textSize="30dp"
                 android:text="x"
                 android:textColor="@color/colorWhite"
@@ -233,7 +233,7 @@
                 android:id="@+id/button_sub"
                 android:layout_marginLeft="@dimen/button_margin_side"
                 android:layout_marginRight="@dimen/button_margin_side"
-                android:background="@color/black"
+                android:background="@drawable/operator_button_effect"
                 android:textSize="30dp"
                 android:text="-"
                 android:textColor="@color/colorWhite" />
@@ -293,7 +293,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/button_add"
-                android:background="@color/black"
+                android:background="@drawable/operator_button_effect"
                 android:layout_marginLeft="@dimen/button_margin_side"
                 android:layout_marginRight="@dimen/button_margin_side"
                 android:textSize="30dp"
@@ -349,7 +349,7 @@
                 android:text="="
                 android:layout_marginLeft="@dimen/button_margin_side"
                 android:layout_marginRight="@dimen/button_margin_side"
-                android:background="@color/colorBluePurple"
+                android:background="@drawable/equals_button_effect"
                 android:textColor="@color/colorWhite" />
 
 
