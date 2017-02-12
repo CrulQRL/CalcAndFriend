@@ -4,13 +4,36 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="temperature_prompt">Choose a temperature</string>
+    <string name="temperature_prompt">Choose temperature</string>
+
+    <string name="length_prompt">Choose length</string>
+
+    <string name="mass_prompt">Choose weight
+    </string>
+
+
 
     <string-array name="temperature_arrays">
-
         <item>Celcius</item>
         <item>Farenheit</item>
         <item>Kelvin</item>
-
     </string-array>
+
+    <string-array name="length_arrays">
+        <item>Kilometer</item>
+        <item>Meter</item>
+        <item>Centimeter</item>
+        <item>Mile</item>
+        <item>Feet</item>
+        <item>Inch</item>
+    </string-array>
+
+    <string-array name="mass_arrays">
+        <item>Kilogram</item>
+        <item>Gram</item>
+        <item>Ton</item>
+        <item>Pound</item>
+        <item>Ounce</item>
+    </string-array>
+
 </resources>

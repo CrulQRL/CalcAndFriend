@@ -5,7 +5,7 @@
     android:background="@color/colorWhite"
     android:orientation="vertical"
     android:weightSum="7"
-    tools:context="com.faqrulans.calcandfriend.LengthConvertFragment">
+    tools:context="com.faqrulans.calcandfriend.MassConvertFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="number"
-            android:id="@+id/inputLengthET"
+            android:id="@+id/inputMassET"
             android:textSize="25sp"
             android:hint="type here"
             android:text=""
@@ -69,23 +69,23 @@
 
 
         <Spinner
-            android:id="@+id/spinnerLength1"
+            android:id="@+id/spinnerMass1"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             style="@style/Widget.AppCompat.Spinner.Underlined"
-            android:entries="@array/length_arrays"
-            android:prompt="@string/length_prompt"
+            android:entries="@array/mass_arrays"
+            android:prompt="@string/mass_prompt"
             android:spinnerMode="dialog"
             />
 
         <Spinner
-            android:id="@+id/spinnerLength2"
+            android:id="@+id/spinnerMass2"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:entries="@array/length_arrays"
-            android:prompt="@string/length_prompt"
+            android:entries="@array/mass_arrays"
+            android:prompt="@string/mass_prompt"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:spinnerMode="dialog"
             />
@@ -104,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/resultLengthTV"
+            android:id="@+id/resultMassTV"
             android:hint="result"
             android:textSize="25sp"
             android:background="@drawable/border_view"
@@ -122,7 +122,7 @@
         android:layout_weight="2.5"
         />
     <Button
-        android:id="@+id/convertLengthBT"
+        android:id="@+id/convertMassBT"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

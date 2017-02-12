@@ -1,6 +1,7 @@
 package com.faqrulans.calcandfriend;
 
-
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,19 +16,19 @@ import android.widget.TextView;
 import java.math.BigDecimal;
 
 
-public class LengthConvertFragment extends Fragment {
+public class MassConvertFragment extends Fragment {
 
-    Spinner spinnerLength1;
-    Spinner spinnerLength2;
-    EditText inputLengthET;
-    TextView resultLengthTV;
+
+    Spinner spinnerMass1;
+    Spinner spinnerMass2;
+    EditText inputMassET;
+    TextView resultMassTV;
     Button convertBT;
-    int selectedLengtherature1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
-    int selectedLengtherature2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedMasserature1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedMasserature2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
     BigDecimal result;
-
-
-    public LengthConvertFragment() {
+    
+    public MassConvertFragment() {
         // Required empty public constructor
     }
 
@@ -36,20 +37,21 @@ public class LengthConvertFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_length_convert, container, false);
+        View view =  inflater.inflate(R.layout.fragment_mass_convert, container, false);
         InitVar(view);
+
         return view;
     }
 
     private void InitVar(View view){
 
-        spinnerLength1 = (Spinner) view.findViewById(R.id.spinnerLength1);
-        spinnerLength2 = (Spinner) view.findViewById(R.id.spinnerLength2);
-        inputLengthET = (EditText) view.findViewById(R.id.inputLengthET);
-        resultLengthTV = (TextView) view.findViewById(R.id.resultLengthTV);
-        convertBT = (Button) view.findViewById(R.id.convertLengthBT);
-        selectedLengtherature1 = 0;
-        selectedLengtherature2 = 0;
+        spinnerMass1 = (Spinner) view.findViewById(R.id.spinnerMass1);
+        spinnerMass2 = (Spinner) view.findViewById(R.id.spinnerMass2);
+        inputMassET = (EditText) view.findViewById(R.id.inputMassET);
+        resultMassTV = (TextView) view.findViewById(R.id.resultMassTV);
+        convertBT = (Button) view.findViewById(R.id.convertMassBT);
+        selectedMasserature1 = 0;
+        selectedMasserature2 = 0;
         result = null;
         setSpinnerListener();
         setButtonConvertListener();
@@ -58,10 +60,10 @@ public class LengthConvertFragment extends Fragment {
     }
 
     private void setSpinnerListener(){
-        spinnerLength1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerMass1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLengtherature1 = position;
+                selectedMasserature1 = position;
             }
 
             @Override
@@ -70,10 +72,10 @@ public class LengthConvertFragment extends Fragment {
             }
         });
 
-        spinnerLength2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerMass2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLengtherature2 = position;
+                selectedMasserature2 = position;
             }
 
             @Override
@@ -94,29 +96,30 @@ public class LengthConvertFragment extends Fragment {
 
     private void StartConvert(){
 
-        String input = inputLengthET.getText().toString();
+        String input = inputMassET.getText().toString();
 
         if(input.length() > 0) {
             result = new BigDecimal(input);
 
-            if (selectedLengtherature1 == 0 && selectedLengtherature2 == 1) {
+            if (selectedMasserature1 == 0 && selectedMasserature2 == 1) {
 
-            } else if (selectedLengtherature1 == 0 && selectedLengtherature2 == 2) {
+            } else if (selectedMasserature1 == 0 && selectedMasserature2 == 2) {
 
-            } else if (selectedLengtherature1 == 1 && selectedLengtherature2 == 0) {
+            } else if (selectedMasserature1 == 1 && selectedMasserature2 == 0) {
 
-            } else if (selectedLengtherature1 == 1 && selectedLengtherature2 == 2) {
+            } else if (selectedMasserature1 == 1 && selectedMasserature2 == 2) {
 
-            } else if (selectedLengtherature1 == 2 && selectedLengtherature2 == 0) {
+            } else if (selectedMasserature1 == 2 && selectedMasserature2 == 0) {
 
-            } else if (selectedLengtherature1 == 2 && selectedLengtherature2 == 1) {
+            } else if (selectedMasserature1 == 2 && selectedMasserature2 == 1) {
 
             }
 
-            resultLengthTV.setText("" + result);
+            resultMassTV.setText("" + result);
             result = null;
         }
 
     }
+
 
 }

@@ -28,7 +28,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return new LengthConvertFragment();
             case 3:
-                return new WeightConvertFragment();
+                return new MassConvertFragment();
             default:
                 return null;
         }
