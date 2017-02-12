@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 public class MassConvertFragment extends Fragment {
@@ -24,8 +26,17 @@ public class MassConvertFragment extends Fragment {
     EditText inputMassET;
     TextView resultMassTV;
     Button convertBT;
-    int selectedMass1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
-    int selectedMass2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedMass1;    //0 Kilogram, 1 Ton, 2 Pound, 3 Once
+    int selectedMass2;    //0 Kilogram, 1 Ton, 2 Pound, 3 Once
+
+    BigDecimal tonToKilogramCoef;
+    BigDecimal poundToKilogramCoef;
+    BigDecimal onceToKilogramCoef;
+
+    BigDecimal kilogramToTonCoef;
+    BigDecimal kilogramToPoundCoef;
+    BigDecimal kilogramToOnceCoef;
+
     BigDecimal result;
     
     public MassConvertFragment() {
@@ -52,6 +63,15 @@ public class MassConvertFragment extends Fragment {
         convertBT = (Button) view.findViewById(R.id.convertMassBT);
         selectedMass1 = 0;
         selectedMass2 = 0;
+
+        tonToKilogramCoef = new BigDecimal(1000);
+        poundToKilogramCoef = new BigDecimal(0.453592);
+        onceToKilogramCoef = new BigDecimal(0.0283495);
+
+        kilogramToTonCoef = new BigDecimal(0.001);
+        kilogramToPoundCoef = new BigDecimal(2.20462);
+        kilogramToOnceCoef = new BigDecimal(35.274);
+
         result = null;
         setSpinnerListener();
         setButtonConvertListener();
@@ -98,28 +118,95 @@ public class MassConvertFragment extends Fragment {
 
         String input = inputMassET.getText().toString();
 
-        if(input.length() > 0) {
+        if(input!= null && input.length() > 0) {
             result = new BigDecimal(input);
 
-            if (selectedMass1 == 0 && selectedMass2 == 1) {
-
-            } else if (selectedMass1 == 0 && selectedMass2 == 2) {
-
-            } else if (selectedMass1 == 1 && selectedMass2 == 0) {
-
-            } else if (selectedMass1 == 1 && selectedMass2 == 2) {
-
-            } else if (selectedMass1 == 2 && selectedMass2 == 0) {
-
-            } else if (selectedMass1 == 2 && selectedMass2 == 1) {
-
+            if(selectedMass1 == 1){
+                result = result.multiply(tonToKilogramCoef);
+            }else if(selectedMass1 == 2){
+                result = result.multiply(poundToKilogramCoef);
+            }else if(selectedMass1 == 3){
+                result = result.multiply(onceToKilogramCoef);
             }
 
-            resultMassTV.setText("" + result);
-            result = null;
+            if (selectedMass1 == 0 && selectedMass2 == 1) {
+                KilogramToTon();
+            } else if (selectedMass1 == 0 && selectedMass2 == 2) {
+                KilogramToPound();
+            } else if (selectedMass1 == 0 && selectedMass2 == 3) {
+                KilogramToOnce();
+            }  else if (selectedMass1 == 1 && selectedMass2 == 2) {
+                TonToPound();
+            } else if (selectedMass1 == 1  && selectedMass2 == 3) {
+                TonToOnce();
+            }else if (selectedMass1 == 2 && selectedMass2 == 1) {
+                PoundToTon();
+            }else if (selectedMass1 == 2 && selectedMass2 == 3) {
+                PoundToOnce();
+            }else if (selectedMass1 == 3 && selectedMass2 == 1) {
+                OnceToTon();
+            }else if (selectedMass1 == 3 && selectedMass2 == 2) {
+                OnceToPound();
+            }
+
+            ShowToResultET();
+
         }
 
     }
+
+    private void ShowToResultET(){
+
+        String strResult = "" + result;
+        String[] resultArr = strResult.split("\\.");
+
+        if(resultArr != null && resultArr.length > 1){
+
+            if(resultArr[0].length() < 3) {
+                if (resultArr[1].length() > 4) {
+                    result = result.setScale(6, RoundingMode.HALF_UP);
+                } else {
+                    result = result.setScale(4, RoundingMode.HALF_UP);
+                }
+            }else{
+                result = result.setScale(2, RoundingMode.HALF_UP);
+            }
+        }else{
+            result = result.setScale(1, RoundingMode.HALF_UP);
+        }
+
+        resultMassTV.setText("" + result);
+        result = null;
+    }
+
+    private void KilogramToTon(){
+        result = result.multiply(kilogramToTonCoef);
+    }
+    private void KilogramToPound(){
+        result = result.multiply(kilogramToPoundCoef);
+    }
+    private void KilogramToOnce(){
+        result = result.multiply(kilogramToOnceCoef);
+    }
+    private void TonToPound(){
+        result = result.multiply(kilogramToPoundCoef);
+    }
+    private void TonToOnce(){
+        result = result.multiply(kilogramToOnceCoef);
+    }
+    private void PoundToTon(){
+        result = result.multiply(kilogramToTonCoef);
+    }
+    private void PoundToOnce(){
+        result = result.multiply(kilogramToOnceCoef);
+    }
+    private void OnceToTon(){
+        result = result.multiply(kilogramToTonCoef);
+    }
+    private void OnceToPound(){
+        result = result.multiply(kilogramToPoundCoef);
+    }
+
 
 
 }

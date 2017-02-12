@@ -28,7 +28,6 @@
 
     <string-array name="mass_arrays">
         <item>Kilogram</item>
-        <item>Gram</item>
         <item>Ton</item>
         <item>Pound</item>
         <item>Ounce</item>

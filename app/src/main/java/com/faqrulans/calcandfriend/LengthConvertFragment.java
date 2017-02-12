@@ -24,6 +24,7 @@ public class LengthConvertFragment extends Fragment {
     Button convertBT;
     int selectedLength1;    //0 meter, 1 mile, 2 feet, 3 inch
     int selectedLength2;    //0 meter, 1 mile, 2 feet, 3 inch
+
     BigDecimal mileToMeterCoef;
     BigDecimal feetToMeterCoef;
     BigDecimal inchToMeterCoef;
