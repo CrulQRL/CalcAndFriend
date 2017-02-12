@@ -24,8 +24,8 @@ public class MassConvertFragment extends Fragment {
     EditText inputMassET;
     TextView resultMassTV;
     Button convertBT;
-    int selectedMasserature1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
-    int selectedMasserature2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedMass1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedMass2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
     BigDecimal result;
     
     public MassConvertFragment() {
@@ -50,8 +50,8 @@ public class MassConvertFragment extends Fragment {
         inputMassET = (EditText) view.findViewById(R.id.inputMassET);
         resultMassTV = (TextView) view.findViewById(R.id.resultMassTV);
         convertBT = (Button) view.findViewById(R.id.convertMassBT);
-        selectedMasserature1 = 0;
-        selectedMasserature2 = 0;
+        selectedMass1 = 0;
+        selectedMass2 = 0;
         result = null;
         setSpinnerListener();
         setButtonConvertListener();
@@ -63,7 +63,7 @@ public class MassConvertFragment extends Fragment {
         spinnerMass1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedMasserature1 = position;
+                selectedMass1 = position;
             }
 
             @Override
@@ -75,7 +75,7 @@ public class MassConvertFragment extends Fragment {
         spinnerMass2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedMasserature2 = position;
+                selectedMass2 = position;
             }
 
             @Override
@@ -101,17 +101,17 @@ public class MassConvertFragment extends Fragment {
         if(input.length() > 0) {
             result = new BigDecimal(input);
 
-            if (selectedMasserature1 == 0 && selectedMasserature2 == 1) {
+            if (selectedMass1 == 0 && selectedMass2 == 1) {
 
-            } else if (selectedMasserature1 == 0 && selectedMasserature2 == 2) {
+            } else if (selectedMass1 == 0 && selectedMass2 == 2) {
 
-            } else if (selectedMasserature1 == 1 && selectedMasserature2 == 0) {
+            } else if (selectedMass1 == 1 && selectedMass2 == 0) {
 
-            } else if (selectedMasserature1 == 1 && selectedMasserature2 == 2) {
+            } else if (selectedMass1 == 1 && selectedMass2 == 2) {
 
-            } else if (selectedMasserature1 == 2 && selectedMasserature2 == 0) {
+            } else if (selectedMass1 == 2 && selectedMass2 == 0) {
 
-            } else if (selectedMasserature1 == 2 && selectedMasserature2 == 1) {
+            } else if (selectedMass1 == 2 && selectedMass2 == 1) {
 
             }
 

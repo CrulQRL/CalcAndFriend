@@ -22,8 +22,16 @@ public class LengthConvertFragment extends Fragment {
     EditText inputLengthET;
     TextView resultLengthTV;
     Button convertBT;
-    int selectedLengtherature1;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
-    int selectedLengtherature2;    //0 Kilometer, 1 meter, 2 centimeter, 3 mile, 4 feet, 5 inch
+    int selectedLength1;    //0 meter, 1 mile, 2 feet, 3 inch
+    int selectedLength2;    //0 meter, 1 mile, 2 feet, 3 inch
+    BigDecimal mileToMeterCoef;
+    BigDecimal feetToMeterCoef;
+    BigDecimal inchToMeterCoef;
+
+    BigDecimal meterToMile;
+    BigDecimal meterToFeet;
+    BigDecimal meterToInch;
+
     BigDecimal result;
 
 
@@ -48,8 +56,17 @@ public class LengthConvertFragment extends Fragment {
         inputLengthET = (EditText) view.findViewById(R.id.inputLengthET);
         resultLengthTV = (TextView) view.findViewById(R.id.resultLengthTV);
         convertBT = (Button) view.findViewById(R.id.convertLengthBT);
-        selectedLengtherature1 = 0;
-        selectedLengtherature2 = 0;
+        selectedLength1 = 0;
+        selectedLength2 = 0;
+
+        mileToMeterCoef = new BigDecimal(1609.34);
+        feetToMeterCoef = new BigDecimal(0.3048);
+        inchToMeterCoef = new BigDecimal(0.0254);
+
+        meterToMile = new BigDecimal(0.000621371);
+        meterToFeet = new BigDecimal(3.28084);
+        meterToInch = new BigDecimal(39.3701);
+
         result = null;
         setSpinnerListener();
         setButtonConvertListener();
@@ -61,7 +78,7 @@ public class LengthConvertFragment extends Fragment {
         spinnerLength1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLengtherature1 = position;
+                selectedLength1 = position;
             }
 
             @Override
@@ -73,7 +90,7 @@ public class LengthConvertFragment extends Fragment {
         spinnerLength2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedLengtherature2 = position;
+                selectedLength2 = position;
             }
 
             @Override
@@ -99,18 +116,30 @@ public class LengthConvertFragment extends Fragment {
         if(input.length() > 0) {
             result = new BigDecimal(input);
 
-            if (selectedLengtherature1 == 0 && selectedLengtherature2 == 1) {
-
-            } else if (selectedLengtherature1 == 0 && selectedLengtherature2 == 2) {
-
-            } else if (selectedLengtherature1 == 1 && selectedLengtherature2 == 0) {
-
-            } else if (selectedLengtherature1 == 1 && selectedLengtherature2 == 2) {
-
-            } else if (selectedLengtherature1 == 2 && selectedLengtherature2 == 0) {
-
-            } else if (selectedLengtherature1 == 2 && selectedLengtherature2 == 1) {
-
+            if (selectedLength1 == 0 && selectedLength2 == 1) {
+                MeterToMile();
+            } else if (selectedLength1 == 0 && selectedLength2 == 2) {
+                MeterToFeet();
+            } else if (selectedLength1 == 0 && selectedLength2 == 3) {
+                MeterToInch();
+            } else if (selectedLength1 == 1 && selectedLength2 == 0) {
+                MileToMeter();
+            } else if (selectedLength1 == 1 && selectedLength2 == 2) {
+                MileToFeet();
+            } else if (selectedLength1 == 1  && selectedLength2 == 3) {
+                MileToInch();
+            }else if (selectedLength1 == 2 && selectedLength2 == 0) {
+                FeetToMeter();
+            }else if (selectedLength1 == 2 && selectedLength2 == 1) {
+                FeetToMile();
+            }else if (selectedLength1 == 2 && selectedLength2 == 3) {
+                FeetToInch();
+            }else if (selectedLength1 == 3 && selectedLength2 == 0) {
+                InchToMeter();
+            }else if (selectedLength1 == 3 && selectedLength2 == 1) {
+                InchToMile();
+            }else if (selectedLength1 == 3 && selectedLength2 == 2) {
+                InchToFeet();
             }
 
             resultLengthTV.setText("" + result);
@@ -118,5 +147,75 @@ public class LengthConvertFragment extends Fragment {
         }
 
     }
+
+    private void MeterToMile(){
+        result = result.multiply(meterToMile);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void MeterToFeet() {
+        result = result.multiply(meterToFeet);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void MeterToInch(){
+        result = result.multiply(meterToInch);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void MileToMeter(){
+        result = result.multiply(mileToMeterCoef);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void MileToFeet(){
+        result = result.multiply(mileToMeterCoef);
+        result = result.multiply(meterToFeet);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+
+    }
+
+    private void MileToInch(){
+        result = result.multiply(mileToMeterCoef);
+        result = result.multiply(meterToInch);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void FeetToMeter(){
+        result = result.multiply(feetToMeterCoef);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void FeetToMile(){
+        result = result.multiply(feetToMeterCoef);
+        result = result.multiply(meterToMile);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+
+    }
+
+    private void FeetToInch(){
+        result = result.multiply(feetToMeterCoef);
+        result = result.multiply(meterToInch);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void InchToMeter(){
+        result = result.multiply(inchToMeterCoef);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
+    private void InchToMile(){
+        result = result.multiply(inchToMeterCoef);
+        result = result.multiply(meterToMile);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+
+    }
+
+    private void InchToFeet(){
+        result = result.multiply(inchToMeterCoef);
+        result = result.multiply(meterToFeet);
+        result = result.setScale(4, BigDecimal.ROUND_HALF_UP);
+    }
+
 
 }

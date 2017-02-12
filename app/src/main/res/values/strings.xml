@@ -20,9 +20,7 @@
     </string-array>
 
     <string-array name="length_arrays">
-        <item>Kilometer</item>
         <item>Meter</item>
-        <item>Centimeter</item>
         <item>Mile</item>
         <item>Feet</item>
         <item>Inch</item>
